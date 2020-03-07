@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 1% More Savings Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>The 1% More Savings Calculator</h1>
+        <p>Increasing your savings by one more percentage point – or even better, another percentage point a year – can add up to big additional savings over time.</p>
+        <div class="inner-container">
+            <div id="input-box">
+                <label for="annual-income">Your annual income</label>
+                <span>$ <input type="number" name="annual-income" id="annual-income" placeholder="100,000" onchange="updateAnnualIncome(this.value);"></span>
+                
+                <label for="current-savings">Your current saving balance</label>
+                <span>$ <input type="number" name="current-savings" id="current-savings" placeholder="0" onchange="updateCurrentSavings(this.value);"></span>
+                
+                <label for="savings-in-percentage">Percent you save each year<span id="savings-in-percentage-label"></span></label> <!-- + current range number -->
+                <input type="range" value="10" name="savings-in-percentage" id="savings-in-percentage" min="0" max="20" step="1" oninput="updateSavingsInPercentage(this.value);">
+                
+                <label for="salary-increase">Your annual salary increase <span id="salary-increase-label"></span></label> <!-- + current range number -->
+                <input type="range" value="0" name="salary-increase" id="salary-increase" min="0" max="20" step="1" oninput="updateSalaryIncrease(this.value);">
+                
+                <label for="annual-return">Your expected annual return <span id="annual-return-label"></span></label> <!-- + current range number -->
+                <input type="range" value="5" name="annual-return" id="annual-return" min="0" max="15" step="1" oninput="updateAnnualReturn(this.value);">
+                
+                <label for="time-horizon">Time horizon <span id="time-horizon-label"></span></label> <!-- + current range number -->
+                <input type="range" value="10" name="time-horizon" id="time-horizon" min="5" max="30" step="1" oninput="updateTimeHorizon(this.value);">
+            </div>
+            <div id="chart"></div>
+        </div>
+        <p><em>Savings are shown in today’s dollars, assuming inflation is 2.5 percent per year.</em></p>
+    </div>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-axis/1.0.10/d3-axis.min.js"></script>
+    <script src="js/updateInputData.js"></script>
+    <script src="js/drawChart.js"></script>
+</body>
+</html>

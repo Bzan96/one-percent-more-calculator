@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+}
+
+body .container {
+  margin: 50px auto;
+  width: 1000px;
+  border: 1px solid #000000;
+  padding: 20px;
+}
+
+body .container h1 {
+  text-align: center;
+}
+
+body .container .inner-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .container .inner-container #input-box {
+  background-color: #eeeeee;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 250px;
+  padding: 5px;
+}
+
+body .container .inner-container #input-box label {
+  position: relative;
+  display: inline-block;
+  margin: 10px 0;
+}
+
+body .container .inner-container #input-box input[type=number]::-webkit-inner-spin-button,
+body .container .inner-container #input-box input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+body .container .inner-container #input-box span#savings-in-percentage-label,
+body .container .inner-container #input-box span#salary-increase-label,
+body .container .inner-container #input-box span#annual-return-label,
+body .container .inner-container #input-box span#time-horizon-label {
+  position: absolute;
+  right: 5px;
+  font-weight: 600;
+}
+
+body .container .inner-container #chart {
+  position: relative;
+}
+
+body .container .inner-container #chart #canvas {
+  background-color: #eeeeee;
+}
+/*# sourceMappingURL=style.css.map */
