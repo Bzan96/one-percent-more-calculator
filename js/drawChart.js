@@ -75,53 +75,7 @@ function drawChart() {
         </div>
       `)
 
-    // Chosen savings rate
-    svg.append("path")
-      .datum(arguments[0])
-      .attr("fill", "none")
-      .attr("stroke", "#0000bb")
-      .attr("stroke-width", 5)
-      .attr("transform", `translate(${offset * 1.5}, ${offset})`)
-      .attr("d", d3.line()
-        .x(d => xScale(d.year) )
-        .y(d => yScale(d.data) )
-      )
-      .on("mouseover", function(d) {
-        console.log(d)
-          tooltip
-          .html(`Under your current savings plan, you would save ${d.data} after ${d.year} years.`)
-            .style("opacity", 1)
-            .style("background-color", "#0000bb")
-      })
-      .on("mouseout", () => {
-          tooltip
-            .style("opacity", 0)
-      })
-
-    // Saving just 1 percent more
-    svg.append("path")
-      .datum(arguments[0])
-      .attr("fill", "none")
-      .attr("stroke", "#00bb00")
-      .attr("stroke-width", 5)
-      .attr("transform", `translate(${offset * 1.5}, ${offset})`)
-      .attr("d", d3.line()
-        .x(d => xScale(d.year) )
-        .y(d => yScale(d.onePercentMore) )
-      )
-      .on("mouseover", function(d) {
-        console.log(d)
-          tooltip
-          .html(`If you saved an additional 1 percent you would save ${d.data} after ${d.year} years.`)
-            .style("opacity", 1)
-            .style("background-color", "#00bb00")
-      })
-      .on("mouseout", () => {
-          tooltip
-            .style("opacity", 0)
-      })
-
-    // Increase savings by 1% each year up to 20%
+    // Red line - Increase savings by 1% each year up to 20%
     svg.append("path")
       .datum(arguments[0])
       .attr("fill", "none")
@@ -132,10 +86,10 @@ function drawChart() {
         .x(d => xScale(d.year) )
         .y(d => yScale(d.upToTwentyPercent) )
       )
-      .on("mouseover", function(d) {
-        console.log(d)
+      .on("mouseover", function() {
           tooltip
-          .html(`If you increased your savings 1 percent annually until you reached a maximum of 16 percent, you would save ${d.data} after ${d.year} years.`)
+          .html(`If you increased your savings 1 percent annually until you reached a maximum of 20 percent, 
+          you would save $${formatNumber(Math.round(yScale.invert(d3.mouse(this)[1])))} after ${Math.round(xScale.invert(d3.mouse(this)[0]))} years.`)
             .style("opacity", 1)
             .style("background-color", "#bb0000")
       })
@@ -143,4 +97,57 @@ function drawChart() {
           tooltip
             .style("opacity", 0)
       })
+
+    // Green line - Saving just 1 percent more
+    svg.append("path")
+      .datum(arguments[0])
+      .attr("fill", "none")
+      .attr("stroke", "#00bb00")
+      .attr("stroke-width", 5)
+      .attr("transform", `translate(${offset * 1.5}, ${offset})`)
+      .attr("d", d3.line()
+        .x(d => xScale(d.year) )
+        .y(d => yScale(d.onePercentMore) )
+      )
+      .on("mouseover", function() {
+          tooltip
+          .html(`If you saved an additional 1 percent you would save $${formatNumber(Math.round(yScale.invert(d3.mouse(this)[1])))} after ${Math.round(xScale.invert(d3.mouse(this)[0]))} years.`)
+            .style("opacity", 1)
+            .style("background-color", "#00bb00")
+      })
+      .on("mouseout", () => {
+          tooltip
+            .style("opacity", 0)
+      })
+
+    // Blue line - Chosen savings rate
+    svg.append("path")
+      .datum(arguments[0])
+      .attr("fill", "none")
+      .attr("stroke", "#0000bb")
+      .attr("stroke-width", 5)
+      .attr("transform", `translate(${offset * 1.5}, ${offset})`)
+      .attr("d", d3.line()
+        .x(d => xScale(d.year) )
+        .y(d => yScale(d.data) )
+      )
+      .on("mouseover", function() {
+          tooltip
+          .html(`Under your current savings plan, you would save $${formatNumber(Math.round(yScale.invert(d3.mouse(this)[1])))} after ${Math.round(xScale.invert(d3.mouse(this)[0]))} years.`)
+            .style("opacity", 1)
+            .style("background-color", "#0000bb")
+      })
+      .on("mouseout", () => {
+          tooltip
+            .style("opacity", 0)
+      })    
+}
+
+// Add dots after every 3rd number reversed for number readability.
+function formatNumber(data) {
+  const addDots = data.toString().split("").reverse().map((dataPoint, index) => {
+    return (index + 1) % 3 === 0 && index !== String(data).length - 1 ? "." + dataPoint  : dataPoint;
+  })
+
+  return addDots.reverse().join("");
 }
