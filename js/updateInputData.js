@@ -89,8 +89,6 @@ const calculateValues = (data) => {
         );
     }
 
-    console.log(dataPoints);
-
     drawChart(dataPoints);
 }
 

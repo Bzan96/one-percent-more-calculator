@@ -1,5 +1,5 @@
-const width = 700;
-const height = 500;
+const width = 750;
+const height = 600;
 const offset = 50;
 
 function drawChart() {
@@ -9,7 +9,6 @@ function drawChart() {
         })
     }
 
-    console.log(arguments)
     const years = arguments[0].map(item => item.year);
     const data = arguments[0].map(item => item.upToTwentyPercent);
     
@@ -17,6 +16,7 @@ function drawChart() {
         .append("svg")
         .attr("width", width)
         .attr("height", height)
+        .attr("transform", `translate(${offset}, 0)`)
 
     const xScale = d3.scaleLinear()
         .range([0, width - 2 * offset])
@@ -47,19 +47,32 @@ function drawChart() {
       .style("position", "absolute")
       .style("opacity", 0);
 
-    const legend = d3.select("#chart")
+    d3.select("#chart")
       .append("div")
       .attr("id", "legend")
       .style("position", "absolute")
       .style("top", "50px")
-      .style("left", "80px")
-      .html("this ma legend")
+      .style("left", "120px")
+      .html(`
+        <div>
+          <span class="legend-blue"></span>
+          <h4>&nbsp;If you save at your current rate</h4>
+        </div>
+        <div>
+          <span class="legend-green"></span>
+          <h4>&nbsp;If you save 1 percent more</h4>
+        </div>
+        <div>
+          <span class="legend-red"></span>
+          <h4>&nbsp;If you increase your savings rate each year by an additional percentage point, to a maximum of 20 percent</h4>
+        </div>
+      `)
 
     // Chosen savings rate
     svg.append("path")
       .datum(arguments[0])
       .attr("fill", "none")
-      .attr("stroke", "#0000ff")
+      .attr("stroke", "#0000bb")
       .attr("stroke-width", 5)
       .attr("transform", `translate(${offset}, ${offset})`)
       .attr("d", d3.line()
@@ -82,7 +95,7 @@ function drawChart() {
     svg.append("path")
       .datum(arguments[0])
       .attr("fill", "none")
-      .attr("stroke", "#00ff00")
+      .attr("stroke", "#00bb00")
       .attr("stroke-width", 5)
       .attr("transform", `translate(${offset}, ${offset})`)
       .attr("d", d3.line()
@@ -94,7 +107,7 @@ function drawChart() {
     svg.append("path")
       .datum(arguments[0])
       .attr("fill", "none")
-      .attr("stroke", "#ff0000")
+      .attr("stroke", "#bb0000")
       .attr("stroke-width", 5)
       .attr("transform", `translate(${offset}, ${offset})`)
       .attr("d", d3.line()
