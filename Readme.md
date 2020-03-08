@@ -1,6 +1,6 @@
 # What Is This?
 
-In Tony Robbins book, "Money, Master the Game", he refers to a great calculator that is designed to show the importance
+In Tony Robbins' book, "Money, Master the Game", he refers to a great calculator that is designed to show the importance
 of saving money over time, so called "dollar-cost average investing". The calculator has been instrumental in my own 
 changed views on saving money, but sadly the original version runs on Flash, which is a software that is discontinued 
 in modern browsers from 2020 - this year. Meaning that unless you use something like Internet Explorer - which you 
