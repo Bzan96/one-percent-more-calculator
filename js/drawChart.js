@@ -1,4 +1,4 @@
-const width = 750;
+const width = 700;
 const height = 600;
 const offset = 50;
 
@@ -16,7 +16,8 @@ function drawChart() {
         .append("svg")
         .attr("width", width)
         .attr("height", height)
-        .attr("transform", `translate(${offset}, 0)`)
+        .attr("transform", `translate(${offset / 2}, 0)`)
+        .style("background-color", "#eeeeee")
 
     const xScale = d3.scaleLinear()
         .range([0, width - 2 * offset])
@@ -33,12 +34,12 @@ function drawChart() {
 
     svg.append("g")
       .attr("id", "x-axis")
-      .attr("transform", `translate(${offset}, ${height - offset})`)
+      .attr("transform", `translate(${offset * 1.5}, ${height - offset})`)
       .call(xAxis);
 
     svg.append("g")
       .attr("id", "y-axis")
-      .attr("transform", `translate(${offset}, ${offset})`)
+      .attr("transform", `translate(${offset * 1.5}, ${offset})`)
       .call(yAxis);
 
     const tooltip = d3.select("#chart")
@@ -52,7 +53,7 @@ function drawChart() {
       .attr("id", "legend")
       .style("position", "absolute")
       .style("top", "50px")
-      .style("left", "120px")
+      .style("left", "105px")
       .html(`
         <div>
           <span class="legend-blue"></span>
@@ -74,7 +75,7 @@ function drawChart() {
       .attr("fill", "none")
       .attr("stroke", "#0000bb")
       .attr("stroke-width", 5)
-      .attr("transform", `translate(${offset}, ${offset})`)
+      .attr("transform", `translate(${offset * 1.5}, ${offset})`)
       .attr("d", d3.line()
         .x(d => xScale(d.year) )
         .y(d => yScale(d.data) )
@@ -97,7 +98,7 @@ function drawChart() {
       .attr("fill", "none")
       .attr("stroke", "#00bb00")
       .attr("stroke-width", 5)
-      .attr("transform", `translate(${offset}, ${offset})`)
+      .attr("transform", `translate(${offset * 1.5}, ${offset})`)
       .attr("d", d3.line()
         .x(d => xScale(d.year) )
         .y(d => yScale(d.onePercentMore) )
@@ -109,7 +110,7 @@ function drawChart() {
       .attr("fill", "none")
       .attr("stroke", "#bb0000")
       .attr("stroke-width", 5)
-      .attr("transform", `translate(${offset}, ${offset})`)
+      .attr("transform", `translate(${offset * 1.5}, ${offset})`)
       .attr("d", d3.line()
         .x(d => xScale(d.year) )
         .y(d => yScale(d.upToTwentyPercent) )

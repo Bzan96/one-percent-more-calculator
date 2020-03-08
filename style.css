@@ -16,8 +16,13 @@ body .container {
   padding: 20px 10px;
 }
 
-body .container h1 {
+body .container > h1 {
   text-align: center;
+  line-height: 1.3;
+}
+
+body .container > p {
+  margin-bottom: 10px;
 }
 
 @media screen and (min-width: 1024px) {
@@ -48,6 +53,9 @@ body .container h1 {
     display: inline-block;
     margin: 10px 0;
   }
+  body .container .inner-container #input-box label:first-of-type {
+    margin-top: 35px;
+  }
   body .container .inner-container #input-box input {
     border: none;
   }
@@ -67,9 +75,6 @@ body .container h1 {
   body .container .inner-container #chart {
     position: relative;
   }
-  body .container .inner-container #chart #canvas {
-    background-color: #eeeeee;
-  }
   body .container .inner-container #chart #legend {
     background-color: #ffffff;
     max-width: 300px;
@@ -83,10 +88,11 @@ body .container h1 {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    padding: 1px;
   }
   body .container .inner-container #chart #legend span {
     display: inline-block;
-    width: 15px;
+    min-width: 15px;
     height: 15px;
     border-radius: 50%;
   }
