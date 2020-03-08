@@ -45,8 +45,14 @@ function drawChart() {
     const tooltip = d3.select("#chart")
       .append("div")
       .attr("id", "tooltip")
+      .style("width", "200px")
       .style("position", "absolute")
-      .style("opacity", 0);
+      .style("opacity", 0)
+      .style("color", "#ffffff")
+      .style("font-weight", "600")
+      .style("padding", "5px")
+      .style("bottom", "250px")
+      .style("left", "105px");
 
     d3.select("#chart")
       .append("div")
@@ -81,11 +87,11 @@ function drawChart() {
         .y(d => yScale(d.data) )
       )
       .on("mouseover", function(d) {
+        console.log(d)
           tooltip
-          .html("hello sir")
-        .style("opacity", 1)
-        .style("left", xScale(parseInt(d) ) - 50 + "px")
-        .style("top", yScale(parseInt(d) ) - 130 + "px")
+          .html(`Under your current savings plan, you would save ${d.data} after ${d.year} years.`)
+            .style("opacity", 1)
+            .style("background-color", "#0000bb")
       })
       .on("mouseout", () => {
           tooltip
@@ -103,6 +109,17 @@ function drawChart() {
         .x(d => xScale(d.year) )
         .y(d => yScale(d.onePercentMore) )
       )
+      .on("mouseover", function(d) {
+        console.log(d)
+          tooltip
+          .html(`If you saved an additional 1 percent you would save ${d.data} after ${d.year} years.`)
+            .style("opacity", 1)
+            .style("background-color", "#00bb00")
+      })
+      .on("mouseout", () => {
+          tooltip
+            .style("opacity", 0)
+      })
 
     // Increase savings by 1% each year up to 20%
     svg.append("path")
@@ -115,4 +132,15 @@ function drawChart() {
         .x(d => xScale(d.year) )
         .y(d => yScale(d.upToTwentyPercent) )
       )
+      .on("mouseover", function(d) {
+        console.log(d)
+          tooltip
+          .html(`If you increased your savings 1 percent annually until you reached a maximum of 16 percent, you would save ${d.data} after ${d.year} years.`)
+            .style("opacity", 1)
+            .style("background-color", "#bb0000")
+      })
+      .on("mouseout", () => {
+          tooltip
+            .style("opacity", 0)
+      })
 }
